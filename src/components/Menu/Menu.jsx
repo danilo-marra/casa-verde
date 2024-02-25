@@ -11,7 +11,7 @@ export function Menu() {
           <a href="/">Como fazer</a>
         </li>
         <li>
-          <a href="/">Ofertas</a>
+          <a href="/">Ofertas Casa verde</a>
         </li>
         <li>
           <a href="/">Depoimentos</a>
