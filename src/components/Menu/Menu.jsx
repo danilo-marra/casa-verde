@@ -1,12 +1,12 @@
-import styles from './Menu.module.css';
+import { Header, NavMenu } from './styles';
 
 export function Menu() {
   return (
-    <header className={styles.menu}>
-      <div className={styles.logo}>
+    <Header>
+      <div>
         <img src="/images/logo.svg" alt="Logo Casa Verde" />
       </div>
-      <nav>
+      <NavMenu>
         <li>
           <a href="/">Como fazer</a>
         </li>
@@ -22,7 +22,7 @@ export function Menu() {
         <li>
           <a href="/">Meu carrinho</a>
         </li>
-      </nav>
-    </header>
+      </NavMenu>
+    </Header>
   );
 }

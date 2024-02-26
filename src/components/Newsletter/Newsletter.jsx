@@ -1,11 +1,40 @@
-import styles from './Newsletter.module.css';
-import formStyles from './Form.module.css';
+import { Form, News } from './styles';
+import { useState, useEffect } from 'react';
 
 export function Newsletter() {
+  const [email, setEmail] = useState(''); //Armazena o email
+  const [emailValido, setEmailValido] = useState(false); //Armazena o email válido
+
+  // Função para validar o email
+  const validarEmail = (email) => {
+    // Expressão regular para validar o formato do email
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const enviarEmail = () => {
+    setTimeout(() => {
+      alert(`Email enviado com sucesso para ${email}`);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    setEmailValido(validarEmail(email));
+  }, [email]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (emailValido) {
+      enviarEmail();
+    } else {
+      alert('Por favor insira um email válido.');
+    }
+  };
+
   return (
-    <div className={styles.assinaturaNewsletter}>
-      <div className={styles.assinaturaNewsletter__container}>
-        <div className={styles.assinaturaNewsletter__container__text}>
+    <News>
+      <div className="assinaturaNewsletter__container">
+        <div className="assinaturaNewsletter__container__text">
           <h1>
             Sua casa com as <br />{' '}
             <strong>
@@ -18,13 +47,18 @@ export function Newsletter() {
             e-mail e assine nossa newsletter para saber das novidades da marca.
           </p>
         </div>
-        <form className={formStyles.form} action="/">
-          <div className={formStyles.fieldGroup}>
-            <input type="email" placeholder="Insira seu email" />
-            <button>Assinar Newsletter</button>
+        <Form onSubmit={handleSubmit}>
+          <div className="fieldGroup">
+            <input
+              type="email"
+              placeholder="Insira seu email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <button type="submit">Assinar Newsletter</button>
           </div>
-        </form>
+        </Form>
       </div>
-    </div>
+    </News>
   );
 }
